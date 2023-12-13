@@ -33,9 +33,14 @@ RUN	add-apt-repository -y ppa:iconnor/zoneminder-$ZM_VERS && \
 	apt-get -y install libcrypt-mysql-perl libyaml-perl libjson-perl libavutil-dev ffmpeg python3 python3-setuptools python3-opencv python3-matplotlib && \
 	apt-get -y install --no-install-recommends libvlc-dev libvlccore-dev vlc-bin vlc-plugin-base vlc-plugin-video-output && \
 	apt-get -y install zoneminder  && \
-	wget -qO- https://github.com/montagdude/zoneminder-notifier/releases/download/0.2/zoneminder-notifier-0.2.tar.gz | tar xvz -C /tmp/notifier && \
- 	/tmp/notifier/zoneminder-notifier-0.2/install.sh
-  	
+	
+RUN 	mkdir -p /tmp/notifier && \ 
+ 	wget -qO- https://github.com/montagdude/zoneminder-notifier/releases/download/0.2/zoneminder-notifier-0.2.tar.gz | tar xvz -C /tmp/notifier && \
+  	cd /tmp/notifier/zoneminder-notifier-0.2 && \
+   	sed -i '/# Install systemd service/,$ s/^/# /' install.sh && \
+    	chmod u+x install.sh  && \   	
+ 	/tmp/notifier/zoneminder-notifier-0.2/install.sh && \ 
+  	cp zm_notifier /etc/init.d
 	
 FROM build1 as build2
 RUN	rm /etc/mysql/my.cnf && \
@@ -70,7 +75,8 @@ RUN	systemd-tmpfiles --create zoneminder.conf && \
 	service mysql restart && \
 	sleep 5 && \
 	service apache2 restart && \
-	service zoneminder start
+	service zoneminder start && \
+ 	service zm_notifier start
 
 FROM build4 as build5
 RUN	mv /root/default-ssl.conf /etc/apache2/sites-enabled/default-ssl.conf && \
