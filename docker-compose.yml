@@ -2,7 +2,7 @@ version: '3'
 services:
   zoneminder:
     container_name: zoneminder
-    image: dlandon/zoneminder.unraid:latest
+    image: snoopy86/zoneminder:latest
     restart: unless-stopped
     ports:
       - 8443:443/tcp
