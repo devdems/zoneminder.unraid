@@ -32,7 +32,7 @@ RUN	add-apt-repository -y ppa:iconnor/zoneminder-$ZM_VERS && \
 	apt-get -y install php$PHP_VERS php$PHP_VERS-fpm libapache2-mod-php$PHP_VERS php$PHP_VERS-mysql php$PHP_VERS-gd php-intl php$PHP_VERS-intl php$PHP_VERS-apc && \
 	apt-get -y install libcrypt-mysql-perl libyaml-perl libjson-perl libavutil-dev ffmpeg python3 python3-setuptools python3-opencv python3-matplotlib && \
 	apt-get -y install --no-install-recommends libvlc-dev libvlccore-dev vlc-bin vlc-plugin-base vlc-plugin-video-output && \
-	apt-get -y install zoneminder  && \
+	apt-get -y install zoneminder
 		
 FROM build1 as build2
 RUN	rm /etc/mysql/my.cnf && \
