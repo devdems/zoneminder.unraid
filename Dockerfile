@@ -1,6 +1,6 @@
 FROM phusion/baseimage:focal-1.2.0 as builder
 
-LABEL maintainer="dlandon"
+LABEL maintainer="devdems"
 
 ENV	DEBCONF_NONINTERACTIVE_SEEN="true" \
 	DEBIAN_FRONTEND="noninteractive" \
