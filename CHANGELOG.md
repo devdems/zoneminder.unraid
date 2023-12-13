@@ -1,4 +1,7 @@
 ## Change Log
+### 2023-12-14
+- Added new detection plugin and modern notifications (https://github.com/montagdude/zoneminder-notifier).
+  
 ### 2023-03-04
 - Refresh docker container.
 
