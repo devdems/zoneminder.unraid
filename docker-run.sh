@@ -14,4 +14,4 @@ docker run -d --name="Zoneminder" \
 -e MULTI_PORT_END="0" \
 -v "/mnt/cache/appdata/Zoneminder":"/config":rw \
 -v "/mnt/cache/appdata/Zoneminder/data":"/var/cache/zoneminder":rw \
-dlandon/zoneminder.unraid
+snoopy86/zoneminder
