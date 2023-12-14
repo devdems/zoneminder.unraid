@@ -65,7 +65,6 @@ RUN 	mkdir -p /tmp/notifier && \
  	wget -qO- https://github.com/montagdude/zoneminder-notifier/releases/download/0.2/zoneminder-notifier-0.2.tar.gz | tar xvz -C /tmp/notifier && \
   	cd /tmp/notifier/zoneminder-notifier-0.2 && \
    	python3 setup.py install && \
-    	# Copy necessary files into the container
 	cp zm_notifier /usr/bin/ && \
 	cp zm_notifier.cfg /etc/ && \
 	cp model_data/ /usr/share/zm-notifier/ && \
@@ -73,7 +72,7 @@ RUN 	mkdir -p /tmp/notifier && \
 	chmod 600 /etc/zm_notifier.cfg && \
 	chmod -R +rx /usr/share/zm-notifier && \
 	find /usr/share/zm-notifier -type d -exec chmod +rx {} \; && \
-	find /usr/share/zm-notifier -type f -exec chmod +r {} \;
+	find /usr/share/zm-notifier -type f -exec chmod +r {} \; && \
   	cp zm_notifier /etc/init.d
 
 FROM build33 as build4
